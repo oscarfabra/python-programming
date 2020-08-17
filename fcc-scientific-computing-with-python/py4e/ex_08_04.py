@@ -9,7 +9,7 @@ except:
   print("File cannot be opened:", file_name)
   exit()
 
-my_list = list()
+my_list = []
 for line in f_hand:
   words = line.split()
   for word in words:
