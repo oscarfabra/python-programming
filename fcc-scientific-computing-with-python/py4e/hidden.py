@@ -4,7 +4,7 @@
 # Create new App and get the four strings
 
 def oauth():
-  return {"consumer_key": "xyz",
-          "consumer_secret": "xyz",
-          "token_key": "xyz",
-          "token_secret": "xyz"}
+  return {"consumer_key": "123",
+          "consumer_secret": "123",
+          "token_key": "123",
+          "token_secret": "123"}
