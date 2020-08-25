@@ -1,3 +1,7 @@
+import utils
+from ecommerce import shipping
+import random
+
 # pounds = input("Tell me your weight in pounds: ")
 # kilos = int(pounds) / 2.205
 # print("Your weight in kilograms is " + str(kilos))
@@ -49,19 +53,29 @@
 # print(numbers)
 
 
-numbers = {
-  1: "One",
-  2: "Two",
-  3: "Three",
-  4: "Four",
-  5: "Five",
-  6: "Six",
-  7: "Seven",
-  8: "Eight",
-  9: "Nine"
-}
-phone = input("Phone: ")
-str = ""
-for digit in phone:
-  str += numbers[int(digit)] + " "
-print(str)
+# numbers = {
+#   1: "One",
+#   2: "Two",
+#   3: "Three",
+#   4: "Four",
+#   5: "Five",
+#   6: "Six",
+#   7: "Seven",
+#   8: "Eight",
+#   9: "Nine"
+# }
+# phone = input("Phone: ")
+# str = ""
+# for digit in phone:
+#   str += numbers[int(digit)] + " "
+# print(str)
+
+
+# numbers = [10, 3, 6, 2, 7]
+# print(utils.find_max(numbers))
+# shipping.calc_shipping()
+
+
+members = ["John", "Mary", "Bob", "Oscar"]
+leader = random.choice(members)
+print(leader)
