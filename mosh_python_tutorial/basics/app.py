@@ -1,6 +1,7 @@
 import utils
 from ecommerce import shipping
 import random
+from pathlib import Path
 
 # pounds = input("Tell me your weight in pounds: ")
 # kilos = int(pounds) / 2.205
@@ -76,6 +77,11 @@ import random
 # shipping.calc_shipping()
 
 
-members = ["John", "Mary", "Bob", "Oscar"]
-leader = random.choice(members)
-print(leader)
+# members = ["John", "Mary", "Bob", "Oscar"]
+# leader = random.choice(members)
+# print(leader)
+
+
+path = Path()
+for file in path.glob("*"):
+  print(file)
