@@ -38,3 +38,48 @@ def kids_with_candies(candies, extra_candies):
 
 # print(kids_with_candies([2,3,5,1,3], 3))
 # print(kids_with_candies([4,2,1,1,2], 1))
+
+
+# Given an array of integers nums.
+# A pair (i,j) is called good if nums[i] == nums[j] and i < j.
+# Return the number of good pairs.
+def num_identical_pairs(nums):
+  pairs = 0
+  for i in range(len(nums) - 1):
+    for j in range(i + 1, len(nums)):
+      if nums[i] == nums[j]: pairs += 1
+  return pairs
+
+
+# Given a valid (IPv4) IP address, return a defanged version of that IP address.
+# A defanged IP address replaces every period "." with "[.]".
+def defang_IP_addr(address):
+  output = ""
+  for i in range(len(address)):
+    output += "[.]" if address[i] == "." else address[i]
+  return output
+ 
+
+# You're given strings J representing the types of stones that are jewels, 
+# and S representing the stones you have.  Each character in S is a type of 
+# stone you have.  You want to know how many of the stones you have are also 
+# jewels.
+# The letters in J are guaranteed distinct, and all characters in J and S are 
+# letters. Letters are case sensitive, so "a" is considered a different type 
+# of stone from "A".
+def num_jewels_in_stones(J, S):
+  total = 0
+  for i in range(len(S)):
+    if S[i] in J: total += 1
+  return total
+
+
+# Given a non-negative integer num, return the number of steps to reduce it to 
+# zero. If the current number is even, you have to divide it by 2, otherwise, 
+# you have to subtract 1 from it.
+def number_of_steps (num):
+  steps = 0
+  while num != 0:
+    num = num / 2 if num % 2 == 0 else num - 1
+    steps += 1
+  return steps
