@@ -83,3 +83,51 @@ def number_of_steps (num):
     num = num / 2 if num % 2 == 0 else num - 1
     steps += 1
   return steps
+
+
+# Given the array nums, for each nums[i] find out how many numbers in the array 
+# are smaller than it. That is, for each nums[i] you have to count the number 
+# of valid j's such that j != i and nums[j] < nums[i].
+# Return the answer in an array.
+def smaller_numbers_than_current(nums):
+  output = []
+  for i in range(len(nums)):
+    count = 0
+    for j in range(len(nums)):
+      if j != i and nums[j] < nums[i]: count += 1
+    output.append(count)
+  return output
+
+# print(smaller_numbers_than_current([8,1,2,2,3]))
+# print(smaller_numbers_than_current([6,5,4,8]))
+
+
+# Given a string s and an integer array indices of the same length.
+# The string s will be shuffled such that the character at the ith position 
+# moves to indices[i] in the shuffled string.
+# Return the shuffled string.
+def restore_string(s, indices):
+  output = list(s)
+  for i in range(len(indices)):
+    output[indices[i]] = s[i]
+  return "".join(output)
+
+# print(restore_string("codeleet", [4,5,6,7,0,2,1,3]))
+# print(restore_string("aiohn", [3,1,4,2,0]))
+# print(restore_string("aaiougrt", [4,0,2,6,7,3,1,5]))
+
+
+# Given an integer number n, return the difference between the product of its 
+# digits and the sum of its digits.
+def subtract_product_and_sum(n):
+  s = 0
+  p = 1
+  while n > 0:
+    digit = n % 10
+    s += digit
+    p *= digit
+    n //= 10
+  return p - s
+
+# print(subtract_product_and_sum(234))
+# print(subtract_product_and_sum(4421))
