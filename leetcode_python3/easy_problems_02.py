@@ -112,3 +112,74 @@ def get_decimal_value(head):
     s += str(head.val)
     head = head.next
   return int(s, 2)
+
+
+# Given an array of integers arr, and three integers a, b and c. You need to 
+# find the number of good triplets.
+# A triplet (arr[i], arr[j], arr[k]) is good if the following conditions are true:
+# 0 <= i < j < k < arr.length
+# |arr[i] - arr[j]| <= a
+# |arr[j] - arr[k]| <= b
+# |arr[i] - arr[k]| <= c
+# Where |x| denotes the absolute value of x.
+# Return the number of good triplets.
+def count_good_triplets(arr, a, b, c):
+  good_triplets = 0
+  for i in range(len(arr) - 2):
+    for j in range(i + 1, len(arr) - 1):
+      for k in range(j + 1, len(arr)):
+        if (abs(arr[i] - arr[j]) <= a 
+        and abs(arr[j] - arr[k]) <= b 
+        and abs(arr[i] - arr[k]) <= c):
+          good_triplets += 1
+  return good_triplets
+
+# print(count_good_triplets([3,0,1,1,9,7], 7, 2, 3))
+# print(count_good_triplets([1,1,2,2,3], 0, 0, 1))
+
+
+# On a plane there are n points with integer coordinates points[i] = [xi, yi]. 
+# Your task is to find the minimum time in seconds to visit all points.
+# You can move according to the next rules:
+# In one second always you can either move vertically, horizontally by one unit 
+# or diagonally (it means to move one unit vertically and one unit horizontally 
+# in one second).
+# You have to visit the points in the same order as they appear in the array.
+def move_one_step(a, b):
+  if a[0] == b[0]:
+    if a[1] < b[1]: a[1] += 1
+    if a[1] > b[1]: a[1] -= 1
+  elif a[1] == b[1]:
+    if a[0] < b[0]: a[0] += 1
+    if a[0] > b[0]: a[0] -= 1
+  elif a[0] < b[0]:
+    if a[1] < b[1]: a[0] += 1; a[1] += 1
+    if a[1] > b[1]: a[0] += 1; a[1] -= 1
+  elif a[0] > b[0]:
+    if a[1] < b[1]: a[0] -= 1; a[1] += 1
+    if a[1] > b[1]: a[0] -= 1; a[1] -= 1
+ 
+def min_time_to_visit_all_points(points):
+  i = 0
+  current_point = points[i]
+  total_time = 0
+  while current_point != points[-1]:
+    next_point = points[i + 1]
+    while current_point != next_point:
+      move_one_step(current_point, next_point)
+      total_time += 1
+    i += 1
+  return total_time
+
+# print(min_time_to_visit_all_points([[1,1],[3,4],[-1,0]]))
+# print(min_time_to_visit_all_points([[3,2],[-2,2]]))
+
+
+# Implement function that has a string parameter str, and returns the same 
+# string in lowercase.
+def to_lower_case(str):
+  return str.lower()
+
+# print(to_lower_case("Hello"))
+# print(to_lower_case("here"))
+# print(to_lower_case("LOVELY"))
