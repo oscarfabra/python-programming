@@ -97,3 +97,62 @@ def sort_array_by_parity(A):
   return even + odd
 
 # print(sort_array_by_parity([3,1,2,4]))
+
+
+# 728. Self Dividing Numbers
+def self_dividing_number(num):
+  s = str(num)
+  if s.find("0") != -1: return False
+  for d in s:
+    if num % int(d) != 0: return False
+  return True
+
+def self_dividing_numbers(left, right):
+  output = []
+  for i in range(left, right + 1):
+    if self_dividing_number(i): output += [i]
+  return output
+
+# print(self_dividing_numbers(1, 22))
+
+
+# 617. Merge Two Binary Trees
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+def merge_trees(t1, t2):
+  if t1 is not None and t2 is not None:
+    tn = TreeNode()
+    tn.val = t1.val + t2.val
+    tn.left = merge_trees(t1.left, t2.left)
+    tn.right = merge_trees(t1.right, t2.right)
+    return tn
+  elif t1 is not None and t2 is None:
+    tn = TreeNode()
+    tn.val = t1.val
+    tn.left = merge_trees(t1.left, None)
+    tn.right = merge_trees(t1.right, None)
+    return tn
+  elif t1 is None and t2 is not None:
+    tn = TreeNode()
+    tn.val = t2.val
+    tn.left = merge_trees(None, t2.left)
+    tn.right = merge_trees(None, t2.right)
+    return tn
+  else:
+    return None
+
+
+# 961. N-Repeated Element in Size 2N Array
+def repeated_n_times(A):
+  n = len(A) // 2
+  for num in A:
+    if A.count(num) == n: return num
+  return None
+
+# print(repeated_n_times([1,2,3,3]))
+# print(repeated_n_times([2,1,2,5,3,2]))
+# print(repeated_n_times([5,1,5,2,5,3,5,4]))
