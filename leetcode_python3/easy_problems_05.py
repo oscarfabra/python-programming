@@ -124,3 +124,14 @@ def sorted_squares(A):
 
 # print(sorted_squares([-4,-1,0,3,10]))
 # print(sorted_squares([-7,-3,2,3,11]))
+
+
+# 561. Array Partition I
+def array_pair_sum(nums):
+  nums.sort()
+  total = 0
+  for i in range(0, len(nums), 2):
+    total += min(nums[i], nums[i + 1])
+  return total
+
+# print(array_pair_sum([1,4,3,2]))
