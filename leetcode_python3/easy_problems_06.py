@@ -44,3 +44,91 @@ def height_checker(heights):
 # print(height_checker([1,1,4,2,1,3]))
 # print(height_checker([5,1,2,3,4]))
 # print(height_checker([1,2,3,4,5]))
+
+
+# 1380. Lucky Numbers in a Matrix
+def lucky_number(matrix, row, col):
+  for num in matrix[row]:
+    if num < matrix[row][col]: return False
+  for i in range(len(matrix)):
+    if matrix[i][col] > matrix[row][col]: return False
+  return True
+
+def lucky_numbers(matrix):
+  output = []
+  for i in range(len(matrix)):
+    for j in range(len(matrix[0])):
+      if lucky_number(matrix, i, j): output += [matrix[i][j]]
+  return output
+
+# print(lucky_numbers([[3,7,8],[9,11,13],[15,16,17]]))
+# print(lucky_numbers([[1,10,4,2],[9,3,8,7],[15,16,17,12]]))
+# print(lucky_numbers([[7,8],[1,2]]))
+
+
+# 1403. Minimum Subsequence in Non-Increasing Order
+def min_subsequence(nums):
+  output = []
+  nums.sort(reverse = True)
+  while sum(output) <= sum(nums):
+    output += [nums.pop(0)]
+  return output
+
+# print(min_subsequence([4,3,10,9,8]))
+# print(min_subsequence([4,4,7,6,7]))
+# print(min_subsequence([6]))
+
+
+# 557. Reverse Words in a String III
+def reverse_words(s):
+  lst = s.split()
+  new_lst = []
+  for word in lst: new_lst += [word[::-1]]
+  return " ".join(new_lst)
+
+# print(reverse_words("Let's take LeetCode contest"))
+
+
+# 944. Delete Columns to Make Sorted
+def column_ordered(A, col):
+  for i in range(1, len(A)):
+    if A[i - 1][col] > A[i][col]: return False
+  return True
+
+def min_deletion_size(A):
+  D = set()
+  for i in range(len(A[0])):
+    if not column_ordered(A, i): D.add(i)
+  return len(D)
+
+# print(min_deletion_size(["cba","daf","ghi"]))
+# print(min_deletion_size(["a","b"]))
+# print(min_deletion_size(["zyx","wvu","tsr"]))
+
+
+# 811. Subdomain Visit Count
+def get_subdomains(domain):
+  sdomains = []
+  pieces = domain.split(".")
+  sdomain = ""
+  for i in range(len(pieces) - 1, -1, -1):
+    if sdomain == "": sdomain = pieces[i]
+    else: sdomain = pieces[i] + "." + sdomain
+    sdomains += [sdomain]
+  return sdomains
+    
+def subdomain_visits(cpdomains):
+  count = {}
+  for cpdomain in cpdomains:
+    num, domain = cpdomain.split()
+    visits = int(num)
+    sdomains = get_subdomains(domain)
+    for sdomain in sdomains:
+      count[sdomain] = count.get(sdomain, 0) + visits
+  output = []
+  for sdomain, visits in count.items():
+    output += [f"{visits} {sdomain}"]
+  return output
+
+# print(subdomain_visits(["9001 discuss.leetcode.com"]))
+# print(subdomain_visits(["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]))
