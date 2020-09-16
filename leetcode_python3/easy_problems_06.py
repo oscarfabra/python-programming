@@ -132,3 +132,15 @@ def subdomain_visits(cpdomains):
 
 # print(subdomain_visits(["9001 discuss.leetcode.com"]))
 # print(subdomain_visits(["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]))
+
+
+# 1441. Build an Array With Stack Operations
+def build_array(target, n):
+  output = []
+  for i in range(1, target[-1] + 1):
+    output += ["Push"] if i in target else ["Push", "Pop"]
+  return output
+
+# print(build_array([1,3], 3))
+# print(build_array([1,2], 4))
+# print(build_array([2,3,4], 4))
