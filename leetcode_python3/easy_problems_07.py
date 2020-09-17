@@ -53,3 +53,77 @@ def remove_duplicates(S):
   return S
 
 # print(remove_duplicates("abbaca"))
+
+
+# 1337. The K Weakest Rows in a Matrix
+def k_weakest_rows(mat, k):
+  count = {}
+  for i in range(len(mat)): count[i] = sum(mat[i])
+  count = {k: v for k, v in sorted(count.items(), key=lambda item: item[1])}
+  return list(count.keys())[:k]
+
+# print(k_weakest_rows([[1,1,0,0,0],[1,1,1,1,0],[1,0,0,0,0],[1,1,0,0,0],[1,1,1,1,1]], 3))
+# print(k_weakest_rows([[1,0,0,0],[1,1,1,1],[1,0,0,0],[1,0,0,0]], 2))
+
+
+# 344. Reverse String
+def reverse_string(s):
+  """
+  Do not return anything, modify s in-place instead.
+  """
+  n = len(s)
+  for i in range(n): s.insert(n - 1 - i, s.pop(0))
+
+# print(reverse_string(["h","e","l","l","o"]))
+# print(reverse_string(["H","a","n","n","a","h"]))
+
+
+# 559. Maximum Depth of N-ary Tree
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+def max_depth(root):
+  if root is None: return 0
+  maxi = 0
+  for node in root.children:
+    maxi = max(maxi, max_depth(node))
+  return maxi + 1
+
+
+# 876. Middle of the Linked List
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+def middle_node(head):
+  length = 0
+  h = head
+  while head is not None:
+    head = head.next
+    length += 1
+  for i in range(length // 2):
+    h = h.next
+  return h
+
+
+# 1356. Sort Integers by The Number of 1 Bits
+def sort_by_bits(arr):
+  count = {}
+  for num in arr:
+      ones = "{0:016b}".format(num).count('1')
+      count[ones] = count.get(ones, []) + [num]
+  count = {k: v for k, v in sorted(count.items(), key=lambda item: item[0])}
+  output = []
+  for bits, nums in count.items():
+      output += sorted(nums)
+  return output
+
+# print(sort_by_bits([0,1,2,3,4,5,6,7,8]))
+# print(sort_by_bits([1024,512,256,128,64,32,16,8,4,2,1]))
+# print(sort_by_bits([2,3,5,7,11,13,17,19]))
+# print(sort_by_bits([10,100,1000,10000]))
