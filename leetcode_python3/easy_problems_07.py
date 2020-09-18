@@ -127,3 +127,23 @@ def sort_by_bits(arr):
 # print(sort_by_bits([1024,512,256,128,64,32,16,8,4,2,1]))
 # print(sort_by_bits([2,3,5,7,11,13,17,19]))
 # print(sort_by_bits([10,100,1000,10000]))
+
+
+# 1002. Find Common Characters
+def min_times_appears(A, char):
+  min_times = len(A[0])
+  for word in A:
+    times = word.count(char)
+    if times < min_times: min_times = times
+  return min_times
+
+def common_chars(A):
+  chars = []
+  for c in A[0]:
+    n = min_times_appears(A, c)
+    if c not in chars and n != 0: 
+      chars += [c] * n
+  return chars
+
+# print(common_chars(["bella","label","roller"]))
+# print(common_chars(["cool","lock","cook"]))
