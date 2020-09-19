@@ -97,3 +97,82 @@ def is_unival_tree(root, val):
 #         self.right = right
 def isUnivalTree(root):
   return is_unival_tree(root, root.val)
+
+
+# 1022. Sum of Root To Leaf Binary Numbers
+def sum_root_to_leaves(root, binary):
+  if root is None: return 0
+  binary += str(root.val)
+  if root.left is None and root.right is None: return int(binary, 2)
+  return sum_root_to_leaves(root.left, binary) + sum_root_to_leaves(root.right, binary)
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+def sum_root_to_leaf(root):
+  return sum_root_to_leaves(root, "")
+
+
+# 897. Increasing Order Search Tree
+def in_order_BST(root, values):
+  if root is None: return
+  in_order_BST(root.left, values)
+  values += [root.val]
+  in_order_BST(root.right, values)
+  return values
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+def increasing_BST(root):
+  values = in_order_BST(root, [])
+  tn = TreeNode(values[-1])
+  for i in range(len(values) - 2, -1, -1):
+    tn = TreeNode(values[i], None, tn)
+  return tn
+
+
+# 1160. Find Words That Can Be Formed by Characters
+def good_string(word, chars):
+  for char in word:
+    if word.count(char) > chars.count(char): return False
+  return True
+
+def count_characters(words, chars):
+  total = 0
+  for word in words:
+    if good_string(word, chars): total += len(word)
+  return total
+
+# print(count_characters(["cat","bt","hat","tree"], "atach"))
+# print(count_characters(["hello","world","leetcode"], "welldonehoneyr"))
+
+
+# 929. Unique Email Addresses
+def num_unique_emails(emails):
+  uniques = set()
+  for email in emails:
+    local, domain = email.split("@")
+    local = local.split("+")[0]
+    local = "".join(local.split("."))
+    recipient = "@".join([local, domain])
+    uniques.add(recipient)
+  return len(uniques)
+
+# print(num_unique_emails(["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]))
+
+
+# 509. Fibonacci Number
+def fib(N):
+  if N == 0 or N == 1: return N
+  return fib(N - 1) + fib(N - 2)
+
+# print(fib(3))
+# print(fib(4))
+# print(fib(5))
