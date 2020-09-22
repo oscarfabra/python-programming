@@ -171,3 +171,17 @@ def single_number(nums):
 
 # print(single_number([2,2,1]))
 # print(single_number([4,1,2,1,2]))
+
+
+# 226. Invert Binary Tree
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+def invert_tree(root):
+  if root is None: return None
+  root.left = invert_tree(root.left)
+  root.right = invert_tree(root.right)
+  return TreeNode(root.val, root.right, root.left)
