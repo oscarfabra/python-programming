@@ -163,3 +163,15 @@ def delete_node(node):
   """
   node.val = node.next.val
   node.next = node.next.next
+
+
+# 1078. Occurrences After Bigram
+def find_ocurrences(text, first, second):
+  answer = []
+  lst = text.split()
+  for i in range(len(lst) - 2):
+    if lst[i] == first and lst[i + 1] == second: answer += [lst[i + 2]]
+  return answer
+
+# print(find_ocurrences("alice is a good girl she is a good student", "a", "good"))
+# print(find_ocurrences("we will we will rock you", "we", "will"))
